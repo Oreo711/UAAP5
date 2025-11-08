@@ -6,7 +6,10 @@ public class CapsuleItem : Item
 
     public override void Use ()
     {
-        _player.BoostHealth(_healthBoost);
+        if (Player)
+        {
+            Player.BoostHealth(_healthBoost);
+        }
 
         base.Use();
     }

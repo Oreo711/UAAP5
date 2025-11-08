@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class CubeItem : Item
+public class SpeedItem : Item
 {
     [SerializeField] private float _speedBoost;
 
     public override void Use ()
     {
-        _player.BoostSpeed(_speedBoost);
+        if (Player)
+        {
+            Player.BoostSpeed(_speedBoost);
+        }
 
         base.Use();
     }

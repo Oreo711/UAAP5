@@ -1,17 +1,20 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.LowLevel;
 
 
 public abstract class Item : MonoBehaviour
 {
-    protected Player _player;
+    protected GameObject Collector;
+    protected Player Player;
 
     private readonly Vector3 _offset = new Vector3(0, 1.5f, 0);
     private bool _isCollected;
 
-    public void Initialize (Player player)
+    public void Initialize (GameObject collector)
     {
-        _player = player;
+        Collector = collector;
+        Player = Collector.GetComponent<Player>();
     }
 
     public void Collect ()
@@ -23,13 +26,11 @@ public abstract class Item : MonoBehaviour
     {
         if (_isCollected)
         {
-            transform.position = _player.transform.position + _offset;
-            _player.HoldItem(this);
-
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Collector.TryGetComponent(out ItemCollector collector))
             {
-                Use();
+                collector.HoldItem(this);
             }
+            transform.position = Collector.transform.position + _offset;
         }
     }
 

@@ -16,8 +16,6 @@ public class Player : MonoBehaviour
 	private float _deadZone = 0.1f;
 	private Vector3 _input;
 
-	public Item HeldItem {get; private set;}
-
 	public void BoostSpeed (float boost)
 	{
 		_speed += boost;
@@ -28,11 +26,6 @@ public class Player : MonoBehaviour
 	{
 		_health += boost;
 		Debug.Log($"Your health is now {_health}!");
-	}
-
-	public void HoldItem (Item item)
-	{
-		HeldItem = item;
 	}
 
 	public void Enable ()
@@ -67,20 +60,5 @@ public class Player : MonoBehaviour
 	private void FixedUpdate ()
 	{
 		_mover.MoveInDirection(gameObject, _input, _speed);
-	}
-
-	private void OnTriggerEnter (Collider other)
-	{
-		if (HeldItem)
-		{
-			return;
-		}
-
-		Item item = other.gameObject.GetComponent<Item>();
-
-		if (item)
-		{
-			item.Collect();
-		}
 	}
 }

@@ -1,5 +1,3 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -11,7 +9,7 @@ public class Projectile : MonoBehaviour
 
     public Vector3 Direction {get; private set;}
 
-    public void Initialize (Vector3 direction)
+    public void Launch (Vector3 direction)
     {
         Direction = direction;
     }

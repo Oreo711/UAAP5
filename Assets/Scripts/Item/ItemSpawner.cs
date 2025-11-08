@@ -9,7 +9,6 @@ public class ItemSpawner : MonoBehaviour
 {
 	[SerializeField] private List<Item> _itemPrefabs;
 	[SerializeField] private float      _cooldown = 5f;
-	[SerializeField] private Player     _player;
 
 	private float   _currentCooldown;
 	private bool    IsOccupied;
@@ -57,6 +56,5 @@ public class ItemSpawner : MonoBehaviour
 
 		Item item = Instantiate(itemPrefab, transform.position + _offset, Quaternion.identity);
 		_currentItem = item;
-		item.Initialize(_player);
 	}
 }
