@@ -15,7 +15,7 @@ public class PlayerVisuals : MonoBehaviour
 
 		if (_player.IsMoving)
 		{
-			_mover.LookInDirection(gameObject, _player.MoveDirection, _rotationSpeed);
+			_mover.LookInDirection(gameObject, _player.Direction, _rotationSpeed);
 		}
 	}
 }

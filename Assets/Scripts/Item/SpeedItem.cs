@@ -6,9 +6,11 @@ public class SpeedItem : Item
 
     public override void Use ()
     {
-        if (Player)
+        Player player = Collector.GetComponent<Player>();
+
+        if (player)
         {
-            Player.BoostSpeed(_speedBoost);
+            player.BoostSpeed(_speedBoost);
         }
 
         base.Use();

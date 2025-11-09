@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDirectable
 {
 	[SerializeField] private float _speed = 5;
 	[SerializeField] private float _health = 100f;
 
-	public bool IsMoving {get; private set;} = false;
-	public Vector3 MoveDirection {get; private set;}
+	public bool    IsMoving  {get; private set;} = false;
+	public Vector3 Direction {get; private set;}
 
 	private readonly Mover _mover = new Mover();
 
@@ -51,8 +51,8 @@ public class Player : MonoBehaviour
 		}
 
 		Vector3 normalizedInput = input.normalized;
-		MoveDirection = normalizedInput;
 		_input   = normalizedInput;
+		ChangeDirection(normalizedInput);
 		IsMoving = true;
 
 	}
@@ -60,5 +60,11 @@ public class Player : MonoBehaviour
 	private void FixedUpdate ()
 	{
 		_mover.MoveInDirection(gameObject, _input, _speed);
+	}
+
+
+	public void ChangeDirection (Vector3 direction)
+	{
+		Direction = direction;
 	}
 }

@@ -29,6 +29,7 @@ public class ItemCollector : MonoBehaviour
 
 		if (item)
 		{
+			HoldItem(item);
 			item.Initialize(gameObject);
 			item.Collect();
 		}

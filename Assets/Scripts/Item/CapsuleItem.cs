@@ -6,9 +6,11 @@ public class CapsuleItem : Item
 
     public override void Use ()
     {
-        if (Player)
+        Player player = Collector.GetComponent<Player>();
+
+        if (player)
         {
-            Player.BoostHealth(_healthBoost);
+            player.BoostHealth(_healthBoost);
         }
 
         base.Use();

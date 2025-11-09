@@ -6,7 +6,6 @@ using UnityEngine.LowLevel;
 public abstract class Item : MonoBehaviour
 {
     protected GameObject Collector;
-    protected Player Player;
 
     private readonly Vector3 _offset = new Vector3(0, 1.5f, 0);
     private bool _isCollected;
@@ -14,7 +13,6 @@ public abstract class Item : MonoBehaviour
     public void Initialize (GameObject collector)
     {
         Collector = collector;
-        Player = Collector.GetComponent<Player>();
     }
 
     public void Collect ()
@@ -26,10 +24,6 @@ public abstract class Item : MonoBehaviour
     {
         if (_isCollected)
         {
-            if (Collector.TryGetComponent(out ItemCollector collector))
-            {
-                collector.HoldItem(this);
-            }
             transform.position = Collector.transform.position + _offset;
         }
     }

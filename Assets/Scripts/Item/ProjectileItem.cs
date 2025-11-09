@@ -6,10 +6,12 @@ public class ProjectileItem : Item
 
 	public override void Use ()
 	{
-		if (Player)
+		IDirectable collector = Collector.GetComponent<IDirectable>();
+
+		if (collector != null)
 		{
 			Projectile projectile = Instantiate(_projectilePrefab, Collector.transform.position, Quaternion.identity);
-			projectile.Launch(Player.MoveDirection);
+			projectile.Launch(collector.Direction);
 		}
 
 		base.Use();
